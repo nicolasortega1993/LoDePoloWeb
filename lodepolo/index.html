@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lo de Polo - Rotisería</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="admin.html" class="admin-link" aria-label="Panel del dueño" title="Panel del dueño">⚙️</a>
+    <div class="logo-badge">
+      <img src="assets/logo.png" alt="Lo de Polo" class="logo-img">
+    </div>
+    <h1 id="business-name">Lo de Polo</h1>
+    <p class="tagline" id="business-tagline">Rotisería</p>
+    <p class="hours" id="business-hours"></p>
+    <svg class="header-wave" viewBox="0 0 400 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,10 Q25,20 50,10 T100,10 T150,10 T200,10 T250,10 T300,10 T350,10 T400,10 V20 H0 Z" fill="#FBF2E3"></path>
+    </svg>
+  </header>
+
+  <nav class="categories" id="categories"></nav>
+
+  <main class="items" id="items">
+    <div class="loading-screen">Cargando el menú...</div>
+  </main>
+
+  <div class="cart-bar-wrap" id="cart-bar-wrap" style="display:none;">
+    <div class="cart-bar">
+      <div class="cart-summary">
+        <span class="count" id="cart-count"></span>
+        <span class="total" id="cart-total"></span>
+      </div>
+      <button class="wa-btn" id="open-order-form">📱 Pedir por WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- Modal: datos del cliente antes de enviar el pedido -->
+  <div class="modal-overlay" id="order-modal" style="display:none;">
+    <div class="modal-box">
+      <h2>Casi listo!</h2>
+      <p class="hint-text" style="margin-top:-6px; margin-bottom: 14px;">Completá tus datos para enviar el pedido por WhatsApp.</p>
+      <div class="field">
+        <label for="customer-name">Tu nombre</label>
+        <input type="text" id="customer-name" placeholder="Ej: Ana">
+      </div>
+      <div class="field">
+        <label for="customer-address">Dirección de entrega</label>
+        <textarea id="customer-address" placeholder="Calle, número, referencia"></textarea>
+      </div>
+      <p class="error-text" id="order-form-error" style="display:none;"></p>
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="cancel-order">Cancelar</button>
+        <button class="btn btn-primary" id="confirm-order" style="flex:2; background: var(--success); color:#0B3B22;">Enviar pedido</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

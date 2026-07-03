@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel del dueño - Lo de Polo</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="admin-wrap">
+    <a href="index.html" class="top-link">&larr; Ver el menú</a>
+
+    <!-- Login -->
+    <div class="login-box" id="login-box">
+      <h2>🔒 Panel del dueño</h2>
+      <div class="field">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" placeholder="tuemail@ejemplo.com">
+      </div>
+      <div class="field">
+        <label for="login-pass">Contraseña</label>
+        <input type="password" id="login-pass">
+      </div>
+      <p class="error-text" id="login-error" style="display:none;"></p>
+      <button class="btn btn-primary" id="login-btn" style="width:100%;">Entrar</button>
+      <p class="hint-text" style="margin-top:10px;">
+        ¿Primera vez? Creá tu usuario y contraseña desde Firebase Console &gt; Authentication.
+        Los pasos están en el README.md del proyecto.
+      </p>
+    </div>
+
+    <!-- Admin content (oculto hasta login) -->
+    <div id="admin-content" style="display:none;">
+      <div class="admin-header">
+        <h1>Panel del dueño</h1>
+      </div>
+      <button class="btn btn-ghost" id="logout-btn" style="margin-bottom:16px;">Cerrar sesión</button>
+
+      <!-- Seed -->
+      <div class="panel" id="seed-panel" style="display:none;">
+        <div class="panel-title"><strong>Cargar menú inicial</strong></div>
+        <p class="hint-text">No hay platos cargados todavía. Tocá el botón para cargar el menú de Lo de Polo con los precios de las cartas.</p>
+        <button class="btn btn-gold" id="seed-btn">Cargar menú inicial</button>
+      </div>
+
+      <!-- Settings -->
+      <div class="panel">
+        <div class="panel-title">
+          <strong>Datos del negocio</strong>
+          <button class="btn btn-ghost" id="toggle-settings" style="padding:6px 10px; font-size:12px;">Editar</button>
+        </div>
+        <div id="settings-form" style="display:none;">
+          <div class="field"><label>Nombre del local</label><input type="text" id="s-name"></div>
+          <div class="field"><label>Bajada / lema</label><input type="text" id="s-tagline"></div>
+          <div class="field"><label>WhatsApp (código de país + área, sin +, sin espacios)</label><input type="text" id="s-whatsapp" placeholder="5493425308949"></div>
+          <div class="field"><label>Instagram</label><input type="text" id="s-instagram"></div>
+          <div class="field"><label>Horarios</label><input type="text" id="s-hours"></div>
+          <button class="btn btn-primary" id="save-settings-btn">Guardar datos</button>
+        </div>
+      </div>
+
+      <!-- Items -->
+      <div class="panel">
+        <div class="panel-title">
+          <strong id="items-count">Platos</strong>
+          <button class="btn btn-gold" id="new-item-btn" style="padding:7px 10px; font-size:13px;">+ Nuevo plato</button>
+        </div>
+        <div id="items-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal edición de item -->
+  <div class="modal-overlay" id="item-modal" style="display:none;">
+    <div class="modal-box">
+      <h2 id="item-modal-title">Editar plato</h2>
+      <div class="field"><label>Nombre</label><input type="text" id="i-name"></div>
+      <div class="field"><label>Descripción</label><input type="text" id="i-description"></div>
+      <div class="field"><label>Precio (0 = "Consultar")</label><input type="number" id="i-price"></div>
+      <div class="field"><label>URL de la foto (opcional)</label><input type="text" id="i-imageurl" placeholder="https://..."></div>
+      <div class="field"><label>Categoría</label><input type="text" id="i-category" list="category-options"></div>
+      <datalist id="category-options"></datalist>
+      <label class="checkbox-field"><input type="checkbox" id="i-available" checked> Disponible (hay stock)</label>
+      <p class="error-text" id="item-modal-error" style="display:none;"></p>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="save-item-btn">Guardar</button>
+        <button class="btn btn-danger" id="delete-item-btn" style="display:none;">Borrar</button>
+        <button class="btn btn-ghost" id="cancel-item-btn">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="save-toast" id="toast" style="display:none;"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
