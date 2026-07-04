@@ -25,7 +25,7 @@ la página, sin que vos tengas que tocar nada.
    - **No** marques "Firebase Hosting" (vamos a usar GitHub Pages).
 4. Firebase te va a mostrar un bloque `firebaseConfig = {...}`. Copiá esos
    valores y pegalos en `js/firebase-config.js`, reemplazando los `"TU_..."`.
-
+lalala
 ### Activar la base de datos (Firestore)
 1. Menú lateral → **Compilación → Firestore Database** → **Crear base de datos**.
 2. Elegí **modo producción** y la ubicación más cercana (ej. `southamerica-east1`).
